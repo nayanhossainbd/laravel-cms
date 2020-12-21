@@ -122,6 +122,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Menus
     Route::delete('menus/destroy', 'MenuController@massDestroy')->name('menus.massDestroy');
     Route::resource('menus', 'MenuController');
+    // Settings
+      // Settings
+      Route::delete('settings/destroy', 'SettingsController@massDestroy')->name('settings.massDestroy');
+      Route::post('settings/media', 'SettingsController@storeMedia')->name('settings.storeMedia');
+      Route::post('settings/ckmedia', 'SettingsController@storeCKEditorImages')->name('settings.storeCKEditorImages');
+      Route::resource('settings', 'SettingsController');
+
 Route::get('/district/{country}','DashboardController@district')->name('district');
    
 });
@@ -143,9 +150,9 @@ Route::group(['namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function 
         Route::get('two-factor/resend', 'TwoFactorController@resend')->name('twoFactor.resend');
     }
 });
-Auth::routes();
+ Auth::routes();
 
-Route::get('/', [App\Http\Controllers\WebsiteController::class, 'index'])->name('home');
+ Route::get('/', [App\Http\Controllers\WebsiteController::class, 'index'])->name('home');
  Route::get('{slug}',[App\Http\Controllers\WebsiteController::class, 'menu'])->name('menu');
  Route::any('/post/{slug}',[App\Http\Controllers\WebsiteController::class, 'post'])->name('post');
  Route::get('/posts/all',[App\Http\Controllers\WebsiteController::class, 'posts'])->name('posts');
@@ -155,3 +162,4 @@ Route::get('/', [App\Http\Controllers\WebsiteController::class, 'index'])->name(
  Route::get('/google/callback', 'Auth\LoginController@googleCallback')->name('googleCallback');
  Route::get('login/github', 'Auth\LoginController@githubLogin')->name('githubLogin');
  Route::get('/github/callback', 'Auth\LoginController@githubCallback')->name('githubCallback');
+ Route::post('/comment/add',[App\Http\Controllers\CommentController::class, 'store'])->name('store');

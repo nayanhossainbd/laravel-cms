@@ -46,7 +46,7 @@ class ProductController extends Controller
         $product->tags()->sync($request->input('tags', []));
 
         if ($request->input('photo', false)) {
-            $product->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
+            $product->addMedia(storage_path('media/uploads/' . $request->input('photo')))->toMediaCollection('photo');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -81,7 +81,7 @@ class ProductController extends Controller
                     $product->photo->delete();
                 }
 
-                $product->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
+                $product->addMedia(storage_path('media/uploads/' . $request->input('photo')))->toMediaCollection('photo');
             }
         } elseif ($product->photo) {
             $product->photo->delete();

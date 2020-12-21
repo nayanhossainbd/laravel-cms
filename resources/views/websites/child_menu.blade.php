@@ -2,7 +2,6 @@
 @if ($child_menu->menus)
     <ul class="{{ ($child_menu->menus)? 'submenu': '' }}">
         @foreach ($child_menu->childrenMenus as $childMenu)
-        {{ 'hello world' }}
             @include('websites.child_menu', ['child_menu' => $childMenu])
         @endforeach
    </ul>

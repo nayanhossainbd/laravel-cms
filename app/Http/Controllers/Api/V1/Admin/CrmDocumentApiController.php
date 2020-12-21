@@ -28,7 +28,7 @@ class CrmDocumentApiController extends Controller
         $crmDocument = CrmDocument::create($request->all());
 
         if ($request->input('document_file', false)) {
-            $crmDocument->addMedia(storage_path('tmp/uploads/' . $request->input('document_file')))->toMediaCollection('document_file');
+            $crmDocument->addMedia(storage_path('media/uploads/' . $request->input('document_file')))->toMediaCollection('document_file');
         }
 
         return (new CrmDocumentResource($crmDocument))
@@ -53,7 +53,7 @@ class CrmDocumentApiController extends Controller
                     $crmDocument->document_file->delete();
                 }
 
-                $crmDocument->addMedia(storage_path('tmp/uploads/' . $request->input('document_file')))->toMediaCollection('document_file');
+                $crmDocument->addMedia(storage_path('media/uploads/' . $request->input('document_file')))->toMediaCollection('document_file');
             }
         } elseif ($crmDocument->document_file) {
             $crmDocument->document_file->delete();

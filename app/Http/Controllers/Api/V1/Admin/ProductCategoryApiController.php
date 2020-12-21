@@ -28,7 +28,7 @@ class ProductCategoryApiController extends Controller
         $productCategory = ProductCategory::create($request->all());
 
         if ($request->input('photo', false)) {
-            $productCategory->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
+            $productCategory->addMedia(storage_path('media/uploads/' . $request->input('photo')))->toMediaCollection('photo');
         }
 
         return (new ProductCategoryResource($productCategory))
@@ -53,7 +53,7 @@ class ProductCategoryApiController extends Controller
                     $productCategory->photo->delete();
                 }
 
-                $productCategory->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
+                $productCategory->addMedia(storage_path('media/uploads/' . $request->input('photo')))->toMediaCollection('photo');
             }
         } elseif ($productCategory->photo) {
             $productCategory->photo->delete();

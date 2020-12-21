@@ -1,3 +1,7 @@
+@php
+    $setting=App\Models\Setting::latest()->first();
+    // dd($setting->logo);
+@endphp
 <!DOCTYPE html>
 <html>
 

@@ -29,7 +29,7 @@ class UsersApiController extends Controller
         $user->roles()->sync($request->input('roles', []));
 
         if ($request->input('avator', false)) {
-            $user->addMedia(storage_path('tmp/uploads/' . $request->input('avator')))->toMediaCollection('avator');
+            $user->addMedia(storage_path('media/uploads/' . $request->input('avator')))->toMediaCollection('avator');
         }
 
         return (new UserResource($user))
@@ -55,7 +55,7 @@ class UsersApiController extends Controller
                     $user->avator->delete();
                 }
 
-                $user->addMedia(storage_path('tmp/uploads/' . $request->input('avator')))->toMediaCollection('avator');
+                $user->addMedia(storage_path('media/uploads/' . $request->input('avator')))->toMediaCollection('avator');
             }
         } elseif ($user->avator) {
             $user->avator->delete();

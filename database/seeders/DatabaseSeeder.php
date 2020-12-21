@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             CountryTableSeeder::class,
             CityTableSeeder::class,
             UpazilaTableSeeder::class,
+            SettingTableSeeder::class,
         ]);
     }
 }

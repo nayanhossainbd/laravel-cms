@@ -167,7 +167,7 @@
                         </ul>
                     </li>
                 @endcan --}}
-                @can('post_access')
+                {{-- @can('post_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.posts.index") }}" class="nav-link {{ request()->is("admin/posts") || request()->is("admin/posts/*") ? "active" : "" }}">
                             <i class="fa-fw nav-icon fas fa-cogs">
@@ -203,7 +203,7 @@
                             </p>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
                 {{-- @can('basic_c_r_m_access')
                     <li class="nav-item has-treeview {{ request()->is("admin/crm-statuses*") ? "menu-open" : "" }} {{ request()->is("admin/crm-customers*") ? "menu-open" : "" }} {{ request()->is("admin/crm-notes*") ? "menu-open" : "" }} {{ request()->is("admin/crm-documents*") ? "menu-open" : "" }}">
@@ -358,7 +358,7 @@
                         </ul>
                     </li>
                 @endcan
-                @can('gallery_access')
+                {{-- @can('gallery_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.galleries.index") }}" class="nav-link {{ request()->is("admin/galleries") || request()->is("admin/galleries/*") ? "active" : "" }}">
                             <i class="fa-fw nav-icon fas fa-cogs">
@@ -369,7 +369,21 @@
                             </p>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
+               
+            @can('setting_access') 
+            <li class="nav-item">
+                <a href="{{ route('admin.settings.edit', $setting->id) }}" class="nav-link {{ request()->is("admin/settings") || request()->is("admin/settings/*") ? "active" : "" }}">
+                            <i class="fa-fw nav-icon fas fa-cogs">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.setting.title') }}
+                            </p>
+                        </a>
+            </li>
+        @endcan
+    
                 @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                     @can('profile_password_edit')
                         <li class="nav-item">

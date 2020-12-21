@@ -17,8 +17,8 @@ class WebsiteController extends Controller
         ->with('childrenMenus')
         ->get();
         $categories=ContentCategory::all();
-        $pages=ContentPost::all();
-        return view('websites.home', compact('menus','pages','categories'));
+        $posts=ContentPost::latest()->paginate();
+        return view('websites.home', compact('menus','posts','categories'));
     }
     public function post($slug)
     { 
@@ -51,14 +51,16 @@ class WebsiteController extends Controller
         ->with('childrenMenus')
         ->get();
         $categories=ContentCategory::all();
-        $posts=ContentPost::all();
+        $posts=ContentPost::latest()->paginate();
         return view('websites.home', compact('menus','posts','categories'));
      
     //    return abort(Response::HTTP_NOT_FOUND, '404 Not Found!');
     }
 
    public function posts(){
-       $posts=ContentPost::all();
+       $posts=ContentPost::latest()->paginate();
        return view('websites.posts',compact('posts'));
+   }public function comment(Request $request){
+      dd($request->name);
    }
 }

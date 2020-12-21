@@ -65,7 +65,7 @@ class ProductCategoryController extends Controller
                     $productCategory->photo->delete();
                 }
 
-                $productCategory->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
+                $productCategory->addMedia(storage_path('media/uploads/' . $request->input('photo')))->toMediaCollection('photo');
             }
         } elseif ($productCategory->photo) {
             $productCategory->photo->delete();

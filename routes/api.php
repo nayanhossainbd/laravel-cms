@@ -64,4 +64,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::apiResource('menus', 'MenuApiController');
     Route::post('/district/{country}','DashboardController@district');
     Route::post('/thana/{thana}','DashboardController@thana');
+     // Settings
+     Route::apiResource('settings', 'SettingsApiController');
 });

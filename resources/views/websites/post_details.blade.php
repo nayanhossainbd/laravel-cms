@@ -92,30 +92,7 @@
                                             <a href="#" class="comment-like-link"><i class="fa fa-thumbs-up"></i>108</a>
                                             <a href="#" class="comment-reply-link"><i class="fa fa-pencil-square-o"></i>Reply</a>
                                         </div>
-                                        <ol class="children">
-                                            <li class="comment style1" id="comment-2">
-                                                <article class="comment-body" id="div-comment-2">
-                                                    <div class="comment-author">
-                                                        <img src="images/blog/comment1-1.png" alt="image">
-                                                    </div><!-- .comment-author -->
-                                                    <div class="comment-text">
-                                                       <div class="comment-metadata clearfix">
-                                                            <h5><a href="#">John Smith</a></h5>                
-                                                            <span class="date">October 19,2018</span>                   
-                                                        </div><!-- .comment-metadata -->
-                                                        <div class="comment-content">
-                                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour, or randomised words which don't look even slightly believable...</p>
-                                                        </div><!-- .comment-content -->
-
-                                                        <div class="reply">
-                                                            <a href="#" class="comment-like-link"><i class="fa fa-thumbs-up"></i>108</a>
-                                                            <a href="#" class="comment-reply-link"><i class="fa fa-pencil-square-o"></i>Reply</a>
-                                                        </div>
-                                                    </div><!-- /.comment-text -->
-                                                </article><!-- .comment-body -->
-                                                
-                                            </li><!-- #comment-## -->
-                                        </ol><!-- .children -->
+                                       
                                     </div><!-- /.comment-text -->                                       
                                 </article><!-- .comment-body -->
                                 
@@ -149,7 +126,11 @@
                                 <h5>Write a Comment</h5>
                                 <p>Your email address will not be published. Required fields are marked *</p>
                             </div>
-                            <form novalidate="" class="comment-form" id="commentform" method="post" action="#">
+                            <form novalidate="" class="comment-form" id="commentform" method="post" action="{{ url('comment/add') }}">
+                                @csrf
+                               
+                                <input type="hidden" aria-required="true" size="30" value=" {{ $data->id }}" name="post_id" id="author">
+                                <input type="hidden" aria-required="true" size="30" value=" {{ Auth::user()->id }}" name="user_id" id="author">
                                 <p class="comment-form-comment">
                                     <label>Review*</label>
                                     <textarea class="" tabindex="4" name="comment" required=""></textarea>                                      

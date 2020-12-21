@@ -31,7 +31,7 @@ class ContentPostApiController extends Controller
         $contentPost->tags()->sync($request->input('tags', []));
 
         if ($request->input('featured_image', false)) {
-            $contentPost->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image');
+            $contentPost->addMedia(storage_path('media/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image');
         }
 
         return (new ContentPostResource($contentPost))
@@ -58,7 +58,7 @@ class ContentPostApiController extends Controller
                     $contentPost->featured_image->delete();
                 }
 
-                $contentPost->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image');
+                $contentPost->addMedia(storage_path('media/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image');
             }
         } elseif ($contentPost->featured_image) {
             $contentPost->featured_image->delete();
