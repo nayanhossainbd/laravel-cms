@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         AvtoDev\AppVersion\ServiceProvider::class,
+        BinaryTorch\LaRecipe\LaRecipeServiceProvider::class,
         /*
          * Package Service Providers...
          */

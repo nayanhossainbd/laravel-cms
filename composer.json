@@ -10,8 +10,10 @@
     "require": {
         "php": "^7.3",
         "avto-dev/app-version-laravel": "^3.0",
+        "binarytorch/larecipe": "^2.4",
         "bugsnag/bugsnag-laravel": "^2.20",
         "doctrine/dbal": "^2.10",
+        "erusev/parsedown-extra": "^0.8.1",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

@@ -57,8 +57,8 @@ return [
 
     'config' => [
         'major' => (int) env('APP_VERSION_MAJOR', 1),
-        'minor' => (int) env('APP_VERSION_MINOR', 0),
-        'patch' => (int) env('APP_VERSION_PATCH', 0),
+        'minor' => (int) env('APP_VERSION_MINOR', 2),
+        'patch' => (int) env('APP_VERSION_PATCH', 3),
         'build' => (string) env('APP_VERSION_BUILD', 0),
 
         'build_file' => storage_path('app/APP_BUILD'),
@@ -84,4 +84,8 @@ return [
     'changelog' => [
         'path' => base_path('CHANGELOG.md'),
     ],
+
+
+
+   
 ];
