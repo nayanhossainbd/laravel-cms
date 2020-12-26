@@ -63,7 +63,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.page.fields.meta_keywords_helper') }}</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="body_content_new">
                 <label for="body_content">{{ trans('cruds.page.fields.body_content') }}</label>
                 <textarea class="form-control ckeditor {{ $errors->has('body_content') ? 'is-invalid' : '' }}" name="body_content" id="body_content">{!! old('body_content') !!}</textarea>
                 @if($errors->has('body_content'))
@@ -86,6 +86,14 @@
 
 @section('scripts')
 <script>
+   $("#name").keyup(function(){
+        var Text = $(this).val();
+        Text = Text.toLowerCase();
+        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+        Meta = Text.replace(/[^a-zA-Z0-9]+/g,',');
+        $("#slug").val(Text);        
+        $("#meta_keywords").val(Meta);        
+});
     $(document).ready(function () {
   function SimpleUploadAdapter(editor) {
     editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
@@ -186,6 +194,20 @@
     } );
   }
 });
+
+var tem = document.getElementById("template");
+var body_content_new = document.getElementById("body_content_new");
+body_content_new.style.display = "none";
+
+tem.onchange = () => {
+  var strUser = tem.options[tem.selectedIndex].text;
+  if(strUser === "Blank Page"){
+    body_content_new.style.display = "block";
+  }else{
+    body_content_new.style.display = "none";
+  }
+}
+
 </script>
 
 @endsection

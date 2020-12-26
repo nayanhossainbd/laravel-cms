@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0546fa7b837850d67bc39898cd064dd6",
+    "content-hash": "93411be332bf95a408da3afc5c32b8b3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -57,6 +57,64 @@
                 "stack"
             ],
             "time": "2020-10-29T16:03:21+00:00"
+        },
+        {
+            "name": "avto-dev/app-version-laravel",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avto-dev/app-version-laravel.git",
+                "reference": "b4dae75fbec763e3e5e373bed644e25b5aacbf49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/avto-dev/app-version-laravel/zipball/b4dae75fbec763e3e5e373bed644e25b5aacbf49",
+                "reference": "b4dae75fbec763e3e5e373bed644e25b5aacbf49",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "~6.0 || ~7.0 || ~8.0",
+                "illuminate/contracts": "~6.0 || ~7.0 || ~8.0",
+                "illuminate/support": "~6.0 || ~7.0 || ~8.0",
+                "illuminate/view": "~6.0 || ~7.0 || ~8.0",
+                "php": "^7.3 || ^8.0",
+                "symfony/console": "^4.4 || ~5.0"
+            },
+            "require-dev": {
+                "laravel/laravel": "~6.0 || ~7.0 || ~8.0",
+                "mockery/mockery": "^1.4",
+                "phpstan/phpstan": "~0.12.34",
+                "phpunit/phpunit": "^8.5.4 || ^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AvtoDev\\AppVersion\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AvtoDev\\AppVersion\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "avto-dev",
+                    "homepage": "https://github.com/avto-dev"
+                }
+            ],
+            "description": "Laravel applications versioning",
+            "keywords": [
+                "laravel",
+                "version"
+            ],
+            "time": "2020-12-25T08:26:47+00:00"
         },
         {
             "name": "brick/math",

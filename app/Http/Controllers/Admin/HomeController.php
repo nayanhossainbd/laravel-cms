@@ -7,6 +7,7 @@ use Auth;
 use App\Models\ContentPost;
 use App\Models\Product;
 use App\Models\ContentCategory;
+use App\Models\ContactMessage;
 class HomeController
 {
     public function index()
@@ -46,10 +47,10 @@ $settings1 = [
         }
 
         $settings2 = [
-            'chart_title'           => 'Last Added',
+            'chart_title'           => 'Last Contact',
             'chart_type'            => 'latest_entries',
             'report_type'           => 'group_by_date',
-            'model'                 => 'App\Models\ContactCompany',
+            'model'                 => 'App\Models\ContactMessage',
             'group_by_field'        => 'created_at',
             'group_by_period'       => 'day',
             'aggregate_function'    => 'count',
@@ -60,10 +61,10 @@ $settings1 = [
             'entries_number'        => '10',
             'fields'                => [
                 'id'              => '',
-                'company_name'    => '',
-                'company_address' => '',
-                'company_website' => '',
-                'company_email'   => '',
+                'name'    => '',
+                'email' => '',
+                'subject' => '',
+                'message'   => '',
             ],
         ];
 
@@ -85,6 +86,7 @@ $settings1 = [
       $posts=ContentPost::all();
       $categories=ContentCategory::all();
       $products=Product::all();
-        return view('home', compact('users','posts','products','categories','settings2','settings1'));
+      $contacts=ContactMessage::latest()->get();
+        return view('home', compact('users','posts','products','categories','settings2','settings1','contacts'));
     }
 }

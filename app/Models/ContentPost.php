@@ -30,6 +30,7 @@ class ContentPost extends Model implements HasMedia
     protected $fillable = [
         'author_id',
         'title',
+        'slug',
         'page_text',
         'excerpt',
         'created_at',

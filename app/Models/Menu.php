@@ -6,19 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
+use App\Models\Page;
 
 class Menu extends Model
 {
     use SoftDeletes, HasFactory;
-
-
-
-
-        
-  
-
-
-
 
 
 
@@ -62,6 +54,7 @@ class Menu extends Model
     {
         return $this->hasMany(Menu::class);
     }
+    
 
     public function childrenMenus()
     {

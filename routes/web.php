@@ -129,7 +129,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
       Route::post('settings/ckmedia', 'SettingsController@storeCKEditorImages')->name('settings.storeCKEditorImages');
       Route::resource('settings', 'SettingsController');
 
-Route::get('/district/{country}','DashboardController@district')->name('district');
+     Route::get('/district/{country}','DashboardController@district')->name('district');
+     Route::get('/contact/message{id}','DashboardController@contactshow')->name('contactshow');
    
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
@@ -153,9 +154,10 @@ Route::group(['namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function 
  Auth::routes();
 
  Route::get('/', [App\Http\Controllers\WebsiteController::class, 'index'])->name('home');
- Route::get('{slug}',[App\Http\Controllers\WebsiteController::class, 'menu'])->name('menu');
+ Route::get('{slug}',[App\Http\Controllers\WebsiteController::class, 'page'])->name('page');
  Route::any('/post/{slug}',[App\Http\Controllers\WebsiteController::class, 'post'])->name('post');
- Route::get('/posts/all',[App\Http\Controllers\WebsiteController::class, 'posts'])->name('posts');
+ Route::post('/contact/post',[App\Http\Controllers\WebsiteController::class, 'contact_message'])->name('contact_message');
+ 
  Route::get('login/facebook', 'Auth\LoginController@facebookLogin')->name('facebookLogin');
  Route::get('facebook/callback', 'Auth\LoginController@facebookCallback');
  Route::get('login/google', 'Auth\LoginController@googleLogin')->name('googleLogin');

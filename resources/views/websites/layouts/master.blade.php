@@ -2,6 +2,8 @@
 
 @php
     $setting=App\Models\Setting::latest()->first();
+    $menus=App\Models\Menu::all();
+    $posts=App\Models\ContentPost::latest()->take(3)->get();
     // dd($setting->logo);
 @endphp
 <head>
@@ -29,57 +31,44 @@
 
     <link href="{{ asset('website/css/animate.css') }}" rel="stylesheet" />
     <link href="{{ asset('website/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/assets/toastr.min.css') }}" rel="stylesheet" />
+    @yield('styles')
 
-<title>  </title>
+
 </head>
 
 <body>
     <!-- Preloader -->
     <nav class="navbar px-md-0 navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="/">{{ trans('panel.site_title') }}</a>
+            <a class="navbar-brand" href="/">{{ $setting->name }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item {{ (route("home"))? "active" : '' }}"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="{{ url('posts') }}" class="nav-link">Articles</a></li>
-                    <li class="nav-item"><a href="{{ url('about') }}" class="nav-link">Team</a></li>
-                    <li class="nav-item"><a href="{{ url('contact') }}" class="nav-link">Contact</a></li>
+                    <li class="nav-item {{ route("home")? "active" : '' }}"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                   <?php 
+                    foreach ($menus as $menu){
+                        $slug=App\Models\Page::where('id',$menu->type)->first();
+
+                        ?>
+                        <li class="nav-item {{ url("$slug->slug") ? "active" : '' }}"><a href="{{ url("$slug->slug") }}" class="nav-link">{{ $menu->name}}</a></li>
+                      <?php
+                    }
+                   ?>
+                  
+                  
+                  
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- END nav -->
-    <div class="hero-wrap js-fullheight" style="background-image: url('{{ asset('website/images/bg_1.jpg') }}');"
-        data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
-                data-scrollax-parent="true">
-                <div class="col-md-12 ftco-animate">
-                    <h2 class="subheading">Hello! Welcome to</h2>
-                    <h1 class="mb-4 mb-md-0">Readit blog</h1>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="text">
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right
-                                    at the coast of the Semantics, a large language ocean.</p>
-                                <div class="mouse">
-                                    <a href="#" class="mouse-icon">
-                                        <div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-	</div>
+
+
+    @yield('banner')
+ 
 	
 	<section class="ftco-section">
 
@@ -95,57 +84,60 @@
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="logo"><a href="#">Read<span>it</span>.</a></h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <h2 class="logo"><a href="#">
+                            @if($setting->logo)
+                            <img class="img rounded" src="{{ $setting->logo->getUrl('preview') }}" alt="{{ $setting->name }}">
+                            @else 
+                            {{ $setting->name }}
+                            @endif
+                        </h2>
+                        <p>{{$setting->description}}</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                            <li class="ftco-animate"><a href="{{ $setting->twitter }}"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="{{ $setting->facebook }}"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="{{ $setting->linkedin }}"><span class="icon-linkedin"></span></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">latest News</h2>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a>
-                                </h3>
-                                <div class="meta">
-                                    <div><a href="#"></span> Oct. 16, 2019</a></div>
-                                    <div><a href="#"></span> Admin</a></div>
-                                    <div><a href="#"></span> 19</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a>
-                                </h3>
-                                <div class="meta">
-                                    <div><a href="#"></span> Oct. 16, 2019</a></div>
-                                    <div><a href="#"></span> Admin</a></div>
-                                    <div><a href="#"></span> 19</a></div>
-                                </div>
-                            </div>
-                        </div>
+                        <h2 class="ftco-heading-2">latest Posts</h2>
+
+@foreach ($posts as $item)
+<div class="block-21 mb-4 d-flex">
+    @if($item->featured_image)
+    <a class="img mr-4 rounded" style="background-image: url({{ $item->featured_image->getUrl('preview') }});"></a>
+    
+    @endif
+  
+    <div class="text">
+        <h3 class="heading"><a href="{{ url('/post'.'/'.base64_encode($item->title)) }}">{{  $item ->title}}</a>
+        </h3>
+        <div class="meta">
+            <div><a href="{{ url('/post'.'/'.base64_encode($item->title)) }}"></span>{{$item->created_at->isoFormat('LLL')}}</a></div>
+        
+        </div>
+    </div>
+</div>
+@endforeach
+
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4 ml-md-5">
                         <h2 class="ftco-heading-2">Information</h2>
                         <ul class="list-unstyled">
-                            <li><a href="{{ url('home') }}" class="py-1 d-block"><span
-                                        class="ion-ios-arrow-forward mr-3"></span>Home</a></li>
-                            <li><a href="{{ url('about') }}" class="py-1 d-block"><span
-                                        class="ion-ios-arrow-forward mr-3"></span>About</a></li>
-                            <li><a href="{{ url('articles') }}" class="py-1 d-block"><span
-                                        class="ion-ios-arrow-forward mr-3"></span>Articles</a></li>
-                            <li><a href="{{ url('contact') }}" class="py-1 d-block"><span
-                                        class="ion-ios-arrow-forward mr-3"></span>Contact</a></li>
+                            <?php 
+                            foreach ($menus as $menu){
+                                $slug=App\Models\Page::where('id',$menu->type)->first();
+        
+                                ?>
+                                <li ><a href="{{ url("$slug->slug") }}" class="py-1 d-block"><span
+                                    class="ion-ios-arrow-forward mr-3"></span> {{ $menu->name}}</a></li>
+                              <?php
+                            }
+                           ?>
+                            
                         </ul>
                     </div>
                 </div>
@@ -154,12 +146,10 @@
                         <h2 class="ftco-heading-2">Have a Questions?</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain
-                                        View, San Francisco, California, USA</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929
-                                            210</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span
-                                            class="text">info@yourdomain.com</span></a></li>
+                                <li><span class="icon icon-map-marker"></span><span class="text">{{$setting->address}}</span></li>
+                                <li><a href="cell:{{$setting->phone_no}}"><span class="icon icon-phone"></span><span class="text">{{$setting->phone_no}}</span></a></li>
+                                <li><a href="mailto:{{ $setting->email }}"><span class="icon icon-envelope"></span><span
+                                            class="text">{{ $setting->email }}</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -168,12 +158,12 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                       
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
 
                         </script> All rights reserved | by <a href="#" target="_blank">{{ trans('panel.site_title') }}</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                       
                     </p>
                 </div>
             </div>
@@ -195,6 +185,7 @@
     <script src="{{ asset('website/js/aos.js') }}"></script>
     <script src="{{ asset('website/js/jquery.animateNumber.min.js') }}"></script>
     <script src="{{ asset('website/js/scrollax.min.js') }}"></script>
+    <script src="{{ asset('js/assets/toastr.min.js') }}"></script>
     <script src="{{ asset('website/js/main.js') }}"></script>
 
 
@@ -212,7 +203,7 @@
 
     </script>
 
-
+@yield('scripts')
 
 </body>
 

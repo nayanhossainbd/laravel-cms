@@ -18,45 +18,28 @@
                 <span class="help-block">{{ trans('cruds.menu.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label  for="slug">{{ trans('cruds.menu.fields.slug') }}</label>
-                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', '') }}">
+                {{-- <label  for="slug">{{ trans('cruds.menu.fields.slug') }}</label> --}}
+                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="hidden" name="slug" id="slug" value="{{ old('slug', '') }}">
                 @if($errors->has('slug'))
                     <span class="text-danger">{{ $errors->first('slug') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.menu.fields.slug_helper') }}</span>
             </div>
             <div class="form-group">
+                
                 <label>{{ trans('cruds.menu.fields.parent') }}</label>
-                <select class="form-control {{ $errors->has('menu_id') ? 'is-invalid' : '' }}" name="menu_id" id="menu_id">
-                    <option value disabled {{ old('menu_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @php( $menus = \App\Models\Menu::all()) 
-                    @foreach($menus as $menu)
-                        <option value="{{ $menu->id }}" {{ old('menu_id', '') === (string) $menu->id ? 'selected' : '' }}>{{ $menu->name }}</option>
+                <select class="form-control {{ $errors->has('menu_id') ? 'is-invalid' : '' }}" name="type" id="type">
+                    <option value disabled {{ old('type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @php( $pages = \App\Models\Page::all()) 
+                    @foreach($pages as $page)
+                        <option value="{{ $page->id }}" {{ old('page', '') === (string) $page->id ? 'selected' : '' }}>{{ $page->name }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('menu_id'))
-                    <span class="text-danger">{{ $errors->first('menu_id') }}</span>
+                @if($errors->has('parent'))
+                    <span class="text-danger">{{ $errors->first('parent') }}</span>
                 @endif
-                <span class="help-block">{{ trans('cruds.menu.fields.menu_id_helper') }}</span>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="page-link">
-                    <label class="form-check-label" for="inlineRadio1">Page Link</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="external-link">
-                    <label class="form-check-label" for="inlineRadio2">External Link</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="internal-link">
-                    <label class="form-check-label" for="inlineRadio3">Internal Link</label>
-                </div>
-                {{-- <select class="form-control {{ $errors->has('type') ? 'is-invalid' : '' }}" name="type" id="type">
-                    <option value disabled {{ old('type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(App\Models\Menu::TYPE_SELECT as $key => $label)
-                        <option value="{{ $key }}" {{ old('type', '-') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
-                    @endforeach
-                </select> --}}
+                <span class="help-block">{{ trans('cruds.menu.fields.parent_helper') }}</span>
+               
                 @if($errors->has('type'))
                     <span class="text-danger">{{ $errors->first('type') }}</span>
                 @endif
@@ -77,27 +60,15 @@
 
 
 @section('scripts')
+
 <script>
-<script>
-  $('document').ready(function () {
+ $("#name").keyup(function(){
+        var Text = $(this).val();
+        Text = Text.toLowerCase();
+        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+        $("#slug").val(Text);        
+});
 
-    $(document).on('change', 'input#name', function() {
-        console.log('hello')
-      var slug = slugify($(this).val());
-      $('input#slug').text(slug);
-    });
-
-  });
-
-  function slugify(text)
-  {
-    return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
-  }
 </script>
-</script>
+
 @endsection

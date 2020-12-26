@@ -26,6 +26,10 @@ class StoreContentPostRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'slug'        => [
+                'string',
+               
+            ],
             'categories.*' => [
                 'integer',
             ],

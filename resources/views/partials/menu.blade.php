@@ -20,7 +20,7 @@
                      @else 
 
                   
-                <img src="{{asset('website/images/logo.png')}}" class="img-circle elevation-2" alt="User Image">
+                {{-- <img src="{{asset('website/images/logo.png')}}" class="img-circle elevation-2" alt="User Image"> --}}
                           @endif
             </div>
                 <div class="info">
@@ -178,7 +178,7 @@
                             </p>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
                 @can('page_access')
                     <li class="nav-item">
@@ -203,7 +203,7 @@
                             </p>
                         </a>
                     </li>
-                @endcan --}}
+                @endcan
 
                 {{-- @can('basic_c_r_m_access')
                     <li class="nav-item has-treeview {{ request()->is("admin/crm-statuses*") ? "menu-open" : "" }} {{ request()->is("admin/crm-customers*") ? "menu-open" : "" }} {{ request()->is("admin/crm-notes*") ? "menu-open" : "" }} {{ request()->is("admin/crm-documents*") ? "menu-open" : "" }}">

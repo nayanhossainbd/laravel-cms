@@ -11,7 +11,8 @@ class CreateContentPostsTable extends Migration
         Schema::create('content_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('author_id');
-            $table->string('title')->nullable();
+            $table->string('title');
+            $table->string('slug')->nullable();
             $table->longText('page_text')->nullable();
             $table->longText('excerpt')->nullable();
             $table->timestamps();

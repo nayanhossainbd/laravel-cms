@@ -304,6 +304,8 @@ return [
             'page_text_helper'      => ' ',
             'excerpt'               => 'Excerpt',
             'excerpt_helper'        => ' ',
+            'slug'               => 'Slug',
+            'slug_helper'        => ' ',
             'featured_image'        => 'Featured Image',
             'featured_image_helper' => ' ',
             'created_at'            => 'Created at',
@@ -532,4 +534,18 @@ return [
             'logo_helper'       => ' ',
         ],
     ],
+        'contactmessage'=>[
+            'title'=>'Contact',
+                'fields'=>[
+                    'id'=>'ID',
+                    'name'=>'Name',
+                    'email'=>'Email',
+                    'subject'=>"Subject",
+                    'message'=>'Message',
+                    
+                ],
+               
+            ],
+    
+    
 ];

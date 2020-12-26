@@ -23,11 +23,12 @@ class Page extends Model implements HasMedia
     ];
 
     const TEMPLATE_SELECT = [
-        'services' => 'Services',
-        'blogs'    => 'Blogs',
+        'service' => 'Services',
+        'posts'    => 'Posts',
         'home'     => 'Home',
         'about'    => 'About Us',
         'contact'  => 'Contact Us',
+        'blank'  => 'Blank Page',
     ];
 
     protected $fillable = [

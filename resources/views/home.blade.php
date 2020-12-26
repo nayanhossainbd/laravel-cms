@@ -9,8 +9,8 @@
               <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Comments</span>
-                <span class="info-box-number">{{ count($products) }}</span>
+                <span class="info-box-text">Conatcts</span>
+                <span class="info-box-number">{{ count($contacts) }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -109,7 +109,7 @@
                                     <tr>
                                         @foreach($settings2['fields'] as $key => $value)
                                             <th>
-                                                {{ trans(sprintf('cruds.%s.fields.%s', lcfirst(last(explode('\\', $settings2['model']))), $key)) }}
+                                                {{ trans(sprintf('cruds.%s.fields.%s', strtolower(last(explode('\\', $settings2['model']))), $key)) }}
                                             </th>
                                         @endforeach
                                     </tr>
@@ -129,7 +129,9 @@
                                                         {{ data_get($entry, $key . '.' . $value) }}
                                                     @endif
                                                 </td>
+                                               
                                             @endforeach
+                                            <td> <a href="{{ route('admin.contactshow',$entry->id) }}"> Show</a></td>
                                         </tr>
                                         @empty
                                         <tr>

@@ -54,6 +54,7 @@ return [
     'relatedData'                          => 'Related Data',
     'update_profile_success'               => 'Profile updated successfully',
     'change_password_success'              => 'Password changed successfully',
+    'contact_success'                      => 'Contact sent successfully',
     'delete_account_success'               => 'Account deleted successfully',
     'datatables'                           => [
         'copy'          => 'Copy',

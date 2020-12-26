@@ -18,6 +18,14 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.contentPost.fields.title_helper') }}</span>
             </div>
+              <div class="form-group">
+                <label  for="slug">{{ trans('cruds.contentPost.fields.slug') }}</label>
+                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', '') }}" required>
+                @if($errors->has('slug'))
+                    <span class="text-danger">{{ $errors->first('slug') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.contentPost.fields.slug_helper') }}</span>
+            </div>
             <div class="form-group">
                 <label for="categories">{{ trans('cruds.contentPost.fields.category') }}</label>
                 <div style="padding-bottom: 4px">
@@ -90,6 +98,13 @@
 
 @section('scripts')
 <script>
+   $("#title").keyup(function(){
+        var Text = $(this).val();
+        Text = Text.toLowerCase();
+        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+        $("#slug").val(Text);        
+});
+
     $(document).ready(function () {
   function SimpleUploadAdapter(editor) {
     editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {

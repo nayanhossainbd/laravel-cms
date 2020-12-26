@@ -26,6 +26,10 @@ class UpdateContentPostRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'slug'        => [
+                'string',
+               
+            ],
             'categories.*' => [
                 'integer',
             ],
